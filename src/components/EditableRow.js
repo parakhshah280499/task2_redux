@@ -1,10 +1,47 @@
+// import React from "react";
+import { connect } from "react-redux";
+
+
+// function EditableRow  (props) {
+//   return (
+//     <tr>
+//       <td>
+//         <input
+//           type="text"
+//           required="required"
+//           placeholder="Enter a name..."
+//           name="campaign_name"
+//           value={props.editFormData.campaign_name}
+//           // onChange={handleEditFormChange}
+//         ></input>
+//       </td>
+//       <td>
+//       </td>
+//       <td>
+//       </td>
+//       <td>
+//         <button type="submit">Save</button>
+//         {/* <button type="button" onClick={handleCancelClick}>
+//           Cancel
+//         </button> */}
+//       </td>
+//     </tr>
+//   );
+// };
+
+// function mapStateToProps(state)
+// {
+//   return {
+//     editFormData:state.editFormData
+//   }
+// }
+
+// export default connect(mapStateToProps)(EditableRow);
+
+
 import React from "react";
 
-const EditableRow = ({
-  editFormData,
-  handleEditFormChange,
-  handleCancelClick,
-}) => {
+function EditableRow (props) {
   return (
     <tr>
       <td>
@@ -12,49 +49,30 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder="Enter a name..."
-          name="fullName"
-          value={editFormData.fullName}
-          onChange={handleEditFormChange}
+          name="campaign_name"
+          value={props.editFormData.campaign_name}
+          // onChange={handleEditFormChange}
         ></input>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter an address..."
-          name="address"
-          value={editFormData.address}
-          onChange={handleEditFormChange}
-        ></input>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter a phone number..."
-          name="phoneNumber"
-          value={editFormData.phoneNumber}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
-          type="email"
-          required="required"
-          placeholder="Enter an email..."
-          name="email"
-          value={editFormData.email}
-          onChange={handleEditFormChange}
-        ></input>
       </td>
       <td>
         <button type="submit">Save</button>
-        <button type="button" onClick={handleCancelClick}>
+        {/* <button type="button" onClick={handleCancelClick}>
           Cancel
-        </button>
+        </button> */}
       </td>
     </tr>
   );
-};
+}
 
-export default EditableRow;
+function mapStateToProps(state)
+{
+  return {
+  editFormData:state.editFormData
+  }
+}
+
+export default connect(EditableRow)(mapStateToProps);
