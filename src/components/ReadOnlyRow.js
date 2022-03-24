@@ -13,7 +13,7 @@ function ReadOnlyRow(props) {
         <button
           type="button"
           onClick={() => {
-            console.log("edit pressed" ,props.edit_dispatch)
+            console.log("edit pressed", props.edit_dispatch)
             props.edit()
             // store.dispatch({ type: 'HANDLE_EDIT_CLICK', payload: { idnew: props.contact.id, dat: al } });
 
@@ -22,7 +22,7 @@ function ReadOnlyRow(props) {
         >
           Edit
         </button>
-        <button type="button" onClick={() => { console.log("delete pressed");props.deletee()}} >
+        <button type="button" onClick={() => { console.log("delete pressed"); props.deletee() }} >
           Delete
         </button>
       </td>
@@ -39,29 +39,28 @@ function ReadOnlyRow(props) {
 //   dispatch({ type: 'HANDLE_EDIT_CLICK', payload: { idnew: props.contact.id, dat: al } });
 // }
 
-function edit_dispatch (dispatch,props) {
+function edit_dispatch(dispatch, props) {
   // console.log("XXXX")
   const al = prompt('Type here');
   console.log(al);
   dispatch({ type: 'HANDLE_EDIT_CLICK', payload: { idnew: props.contact.id, dat: al } });
 }
 
-function delete_dispatch(dispatch,props){
+function delete_dispatch(dispatch, props) {
   dispatch({ type: 'HANDLE_DELETE_CLICK', payload: props.contact.id })
 }
 
 
-const mapDispatchToProps = (dispatch,props)=> 
-{
+const mapDispatchToProps = (dispatch, props) => {
   return {
-  edit : ()=>{edit_dispatch(dispatch,props)},
-  deletee : ()=>{delete_dispatch(dispatch, props)}
-}
+    edit: () => { edit_dispatch(dispatch, props) },
+    deletee: () => { delete_dispatch(dispatch, props) }
+  }
 }
 
-const mapStateToProps = state => ( 
-{
-      campaign:state.campaign
-}
+const mapStateToProps = state => (
+  {
+    campaign: state.campaign
+  }
 )
-export default connect(mapStateToProps,mapDispatchToProps)(ReadOnlyRow);
+export default connect(mapStateToProps, mapDispatchToProps)(ReadOnlyRow);
