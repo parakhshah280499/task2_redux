@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import EditableRow from './EditableRow';
 import ReadOnlyRow from './ReadOnlyRow';
 import {Fragment} from "react";
-import store from '../store';
+// import store from '../store';
+import {connect} from 'react-redux';
 
 
 
  function Divide(props) {
-    const state = store.getState()
-     console.log(state.campaign.length)
+    // const state = store.getState()
+     console.log(props.campaign.length)
   return (
     <div className="app-container">
     <form>
@@ -24,17 +24,11 @@ import store from '../store';
           </tr>
         </thead>
         <tbody>
-          {state.campaign.map((contact) => (
+          {props.campaign.map((contact) => (
             <Fragment>
-              {props.editCampaignID === contact.id ? (
-                <EditableRow
-               
-                />
-              ) : (
                 <ReadOnlyRow
                   contact={contact}
                 />
-              )}
             </Fragment>
           ))}
         </tbody>
@@ -44,4 +38,11 @@ import store from '../store';
   )
 }
 
-export default Divide
+function mapStateToProps(state)
+{
+  return {
+    campaign:state.campaign
+  }
+}
+
+export default connect(mapStateToProps)(Divide)

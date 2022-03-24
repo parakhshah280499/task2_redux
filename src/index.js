@@ -7,17 +7,25 @@ console.log(store)
 console.log(store.getState())
 
 
-const renders = ()=>{
+// const renders = ()=>{
 
-  console.log("CALING RENDER")
-  ReactDOM.render(
+//   console.log("CALING RENDER")
+//   ReactDOM.render(
+//     <App />,
+  
+//   document.getElementById("root")
+// );
+
+//   }
+
+// renders()
+
+// store.subscribe(renders)
+
+ReactDOM.render(
     <App />,
   
   document.getElementById("root")
-);
+)
 
-  }
-
-renders()
-
-store.subscribe(renders)
+export default App;
