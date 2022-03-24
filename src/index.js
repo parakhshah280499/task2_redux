@@ -7,6 +7,15 @@ console.log(store)
 console.log(store.getState())
 
 
+
+ReactDOM.render(
+    <App />,
+  
+  document.getElementById("root")
+)
+
+export default App;
+
 // const renders = ()=>{
 
 //   console.log("CALING RENDER")
@@ -21,11 +30,3 @@ console.log(store.getState())
 // renders()
 
 // store.subscribe(renders)
-
-ReactDOM.render(
-    <App />,
-  
-  document.getElementById("root")
-)
-
-export default App;
