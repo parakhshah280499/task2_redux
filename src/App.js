@@ -4,7 +4,7 @@ import store from './store.js'
 import React from "react";
 import "./App.css";
 import { Provider } from 'react-redux'
-import Divide from './components/Divide.js';
+import Divide from './components/main_component.js';
 
 
 function App (props) {
