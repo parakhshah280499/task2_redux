@@ -1,62 +1,27 @@
-// import React from "react";
-// import { connect } from 'react-redux';
-// import data from '../data.json'
-
-// function ReadOnlyRow (props,contact) {
-//   // const dat = data;
-//   console.log(contact.campaign_name);
-//   return (
-//     <tr>
-//       <td>{contact.campaign_name}</td>
-//       <td>{contact.type_of}</td>
-//       <td>{contact.company_name}</td>
-//       <td>
-//         <button
-//           type="button"
-//           // onClick={(event) => handleEditClick(event, contact)}
-//         >
-//           Edit
-//         </button>
-//         <button type="button" onClick={() => props.dispatch({type:'HANDLE_DELETE_CLICK',payload:props.campaign.id})}>
-//           Delete
-//         </button>
-//       </td>
-//     </tr>
-//   );
-// }
-
-// function mapStateToProps(state)
-// {
-//   return {
-//     campaign:state.campaign
-//   }
-// }
-
-
-
-
-// export default connect(mapStateToProps)(ReadOnlyRow);
-
-
+/* eslint-disable react/prop-types */
 import React from "react";
-import { connect } from 'react-redux'
+import store from "../store";
 
 function ReadOnlyRow  (props){
-  // console.log(props.dispatch())
   return (
     <tr>
-      <td>{props.campaign.campaign_name}</td>
-      <td>{props.campaign.type_of}</td>
-      <td>{props.campaign.company_name}</td>
+      <td>{props.contact.campaign_name}</td>
+      <td>{props.contact.type_of}</td>
+      <td>{props.contact.company_name}</td>
       <td>
         <button
           type="button"
-          // onClick={(event) => handleEditClick(event, contact)}
+          onClick={() => {
+              const al =prompt('Type here');
+              console.log(al);
+              store.dispatch({type:'HANDLE_EDIT_CLICK',payload:{idnew:props.contact.id,dat:al}});
+            
+          }
+        }
         >
           Edit
         </button>
-        {/* <button type="button" onClick={() => handleDeleteClick(contact.id)}> */}
-                <button type="button" onClick={() => props.dispatch({type:'HANDLE_DELETE_CLICK',payload:props.campaign.id})} >
+                <button type="button" onClick={() => store.dispatch({type:'HANDLE_DELETE_CLICK',payload:props.contact.id})} >
           Delete
         </button>
       </td>
@@ -64,11 +29,5 @@ function ReadOnlyRow  (props){
   );
 }
 
-function mapStateToProps(state)
-{
-    return {
-      campaign:state.campaign
-    }
-}
 
-export default connect(ReadOnlyRow)(mapStateToProps);
+export default ReadOnlyRow;

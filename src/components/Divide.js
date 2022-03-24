@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import EditableRow from './EditableRow';
 import ReadOnlyRow from './ReadOnlyRow';
 import {Fragment} from "react";
-import { connect } from 'react-redux';
+import store from '../store';
+
 
 
  function Divide(props) {
+    const state = store.getState()
+     console.log(state.campaign.length)
   return (
     <div className="app-container">
     <form>
@@ -19,19 +24,15 @@ import { connect } from 'react-redux';
           </tr>
         </thead>
         <tbody>
-          {props.campaign.map((contact) => (
+          {state.campaign.map((contact) => (
             <Fragment>
               {props.editCampaignID === contact.id ? (
                 <EditableRow
-                //   editFormData={props.editFormData}
-                //   handleEditFormChange={props.handleEditFormChange}
-                //   handleCancelClick={props.handleCancelClick}
+               
                 />
               ) : (
                 <ReadOnlyRow
                   contact={contact}
-                //   handleEditClick={props.handleEditClick}
-                //   handleDeleteClick={props.handleDeleteClick}
                 />
               )}
             </Fragment>
@@ -43,13 +44,4 @@ import { connect } from 'react-redux';
   )
 }
 
-function mapStateToProps(state)
-{
-    return {
-        campaign:state.campaign,
-        editFormData:state.editFormData,
-        editCampaignID:state.editCampaignID
-    }
-}
-
-export default connect (mapStateToProps)(Divide)
+export default Divide
