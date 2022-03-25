@@ -1,60 +1,42 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-// import store from "../store";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 function ReadOnlyRow(props) {
+  const {campaign_name,company_name, type_of}=props.campaignData;
   return (
     <tr>
-      <td>{props.contact.campaign_name}</td>
-      <td>{props.contact.type_of}</td>
-      <td>{props.contact.company_name}</td>
+      <td>{campaign_name}</td>
+      <td>{company_name}</td>
+      <td>{type_of}</td>
       <td>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("edit pressed", props.edit_dispatch)
-            props.edit()
-            // store.dispatch({ type: 'HANDLE_EDIT_CLICK', payload: { idnew: props.contact.id, dat: al } });
-
-          }
-          }
-        >
-          Edit
+        <button type="button" onClick={() => { props.editCampaign() }} >
+            Edit
         </button>
-        <button type="button" onClick={() => { console.log("delete pressed"); props.deletee() }} >
-          Delete
+        <button type="button" onClick={() => { props.deleteCampaign() }} >
+            Delete
         </button>
       </td>
     </tr>
   );
 }
 
-// Why using const doesnt work and function works
-
-// const edit_dispatch = () => (dispatch,props) => {
-//   console.log("XXXX")
-//   const al = prompt('Type here');
-//   console.log(al);
-//   dispatch({ type: 'HANDLE_EDIT_CLICK', payload: { idnew: props.contact.id, dat: al } });
-// }
-
 function edit_dispatch(dispatch, props) {
-  // console.log("XXXX")
-  const al = prompt('Type here');
-  console.log(al);
-  dispatch({ type: 'HANDLE_EDIT_CLICK', payload: { idnew: props.contact.id, dat: al } });
+  const newCampaignData = prompt("Type here");
+  const {id}=props.campaignData;
+  dispatch({ type: "HANDLE_EDIT_CLICK", payload: { editID: id, data: newCampaignData } });
 }
 
 function delete_dispatch(dispatch, props) {
-  dispatch({ type: 'HANDLE_DELETE_CLICK', payload: props.contact.id })
+  const {id}=props.campaignData;
+  dispatch({ type: "HANDLE_DELETE_CLICK", payload: id })
 }
 
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    edit: () => { edit_dispatch(dispatch, props) },
-    deletee: () => { delete_dispatch(dispatch, props) }
+    editCampaign: () => { edit_dispatch(dispatch, props) },
+    deleteCampaign: () => { delete_dispatch(dispatch, props) }
   }
 }
 
@@ -63,4 +45,5 @@ const mapStateToProps = state => (
     campaign: state.campaign
   }
 )
+
 export default connect(mapStateToProps, mapDispatchToProps)(ReadOnlyRow);

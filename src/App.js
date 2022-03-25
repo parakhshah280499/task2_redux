@@ -1,21 +1,19 @@
 /* eslint-disable no-unused-vars */
-
-import store from './store.js'
 import React from "react";
-import "./App.css";
-import { Provider } from 'react-redux'
-import Divide from './components/main_component.js';
+import { Provider } from "react-redux"
 
+import CampaignTable from "./components/CampaignTable.js";
+import "./App.css";
+import store from "./store.js"
 
 function App (props) {
   
   return (
     <Provider store={store}>
-      <Divide/>
+      <CampaignTable/>
     </Provider>
     
   );
 }
-
 
 export default App;
